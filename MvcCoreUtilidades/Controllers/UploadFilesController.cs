@@ -29,6 +29,7 @@ namespace MvcCoreUtilidades.Controllers
             //NET CORE NO ES WINDOWS Y ESTA RUTA ES DE WINDOWS
             //LAS RUTAS DE LINUX PUEDEN SER DISTINTAS Y MACOS
             //Debemos crear rutas con herramientas de Net Core: Path
+            //string path = this.helper.MapPath(fileName, Folders.Images);
             string path = this.helper.MapUrlPath(fileName, Folders.Images);
             //using(Stream stream = new FileStream(path, FileMode.Create))
             //{
