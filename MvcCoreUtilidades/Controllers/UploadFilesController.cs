@@ -6,10 +6,11 @@ namespace MvcCoreUtilidades.Controllers
     public class UploadFilesController : Controller
     {
         private HelperPathProvider helper;
+        
 
         public UploadFilesController(HelperPathProvider helper)
         {
-            this.helper = helper;
+            this.helper = helper;  
         }
 
         public IActionResult SubirFile()
@@ -28,13 +29,13 @@ namespace MvcCoreUtilidades.Controllers
             //NET CORE NO ES WINDOWS Y ESTA RUTA ES DE WINDOWS
             //LAS RUTAS DE LINUX PUEDEN SER DISTINTAS Y MACOS
             //Debemos crear rutas con herramientas de Net Core: Path
-            string path = this.helper.MapPath(fileName, Folders.Images);
-            using(Stream stream = new FileStream(path, FileMode.Create))
-            {
-                await fichero.CopyToAsync(stream);
-            }
+            string path = this.helper.MapUrlPath(fileName, Folders.Images);
+            //using(Stream stream = new FileStream(path, FileMode.Create))
+            //{
+            //    await fichero.CopyToAsync(stream);
+            //}
             ViewData["MENSAJE"] = "Fichero subido a " + path;
-            ViewData["FILENAME"] = fileName;
+            ViewData["PATH"] = path;
             return View();
         }
     }
