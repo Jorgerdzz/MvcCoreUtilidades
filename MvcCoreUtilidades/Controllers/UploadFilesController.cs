@@ -13,12 +13,6 @@ namespace MvcCoreUtilidades.Controllers
             this.helper = helper;  
         }
 
-        [ResponseCache(Duration = 15, Location = ResponseCacheLocation.Client)]
-        public IActionResult Index()
-        {
-            return View();
-        }
-
         public IActionResult SubirFile()
         {
             return View();
