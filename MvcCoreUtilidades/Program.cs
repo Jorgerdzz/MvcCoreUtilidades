@@ -1,4 +1,5 @@
 using MvcCoreUtilidades.Helpers;
+using MvcCoreUtilidades.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +10,8 @@ builder.Services.AddSession();
 builder.Services.AddMemoryCache();
 builder.Services.AddSingleton<HelperPathProvider>();
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddTransient<RepositoryCoches>();
 
 var app = builder.Build();
 

@@ -1,0 +1,27 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model Coche
+<h1>Details Ajax View</h1>
+
+@if(Model == null)
+{
+    <h2 style="color: red">No existe el coche</h2>
+}
+else
+{
+    <ul class="list-group">
+        <li class="lsit-group-item">
+            Id: @Model.IdCoche
+        </li>
+        <li class="lsit-group-item">
+            Tipo: @Model.Marca | @Model.Modelo
+        </li>
+        <li class="lsit-group-item">
+            <img src="@Model.Imagen" style="width:40px; height:40px"/>
+        </li>
+    </ul>
+    
+}

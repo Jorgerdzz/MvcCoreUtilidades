@@ -1,53 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MvcCoreUtilidades.Models;
+using MvcCoreUtilidades.Repositories;
 
 namespace MvcCoreUtilidades.Controllers
 {
     public class CochesController : Controller
     {
-        public List<Coche> Coches;
+        private RepositoryCoches repo;
 
-        public CochesController()
+        public CochesController(RepositoryCoches repo)
         {
-            this.Coches = new List<Coche>
-
-            {
-
-
-
-              new Coche { IdCoche = 1, Marca = "Pontiac"
-
-
-
-             , Modelo = "Firebird", Imagen = "https://mudfeed.com/wp-content/uploads/2021/08/KITT-1200x640.jpg"},
-
-
-
-              new Coche { IdCoche = 2, Marca = "Volkswagen"
-
-
-
-             , Modelo = "Escarabajo", Imagen = "https://www.quadis.es/documents/80345/95274/herbie-el-volkswagen-beetle-mas.jpg"},
-
-
-
-              new Coche { IdCoche = 3, Marca = "Ferrari"
-
-
-
-             , Modelo = "Testarrosa", Imagen = "https://www.lavanguardia.com/files/article_main_microformat/uploads/2017/01/03/5f15f8b7c1229.png"},
-
-
-
-              new Coche { IdCoche = 4, Marca = "Ford"
-
-
-
-             , Modelo = "Mustang GT", Imagen = "https://cdn.autobild.es/sites/navi.axelspringer.es/public/styles/1200/public/media/image/2018/03/prueba-wolf-racing-mustang-gt.jpg"}
-
-
-
-             };
+            this.repo = repo;
         }
 
         public IActionResult Index()
@@ -57,9 +20,20 @@ namespace MvcCoreUtilidades.Controllers
 
         public IActionResult _CochesPartial()
         {
-            //DEBEMOS DEVOLVER EL DIBUJO QUE DESEEMOS EN AJAX.
-            //INDICAMOS EL NOMBRE DEL FICHERO CSHTML Y SU MODEL
-            return PartialView("_CochesPartial", this.Coches);
+            List<Coche> coches = this.repo.GetCoches();
+            return PartialView("_CochesPartial", coches);
         }
+        public IActionResult _CochesDetails(int idCoche)
+        {
+            Coche coche = this.repo.FindCoche(idCoche);
+            return PartialView("_CochesDetailsView", coche);
+        }
+
+        public IActionResult Details(int idCoche)
+        {
+            Coche coche = this.repo.FindCoche(idCoche);
+            return View(coche);
+        }
+
     }
 }

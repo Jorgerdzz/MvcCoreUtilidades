@@ -8,12 +8,27 @@
                 //LLAMAMOS AL CONTROLLER Y AL IACTIONRESULT
                 $("#containercoches").load("/Coches/_CochesPartial");
             })
+            $("#botonloaddeatilscoches").click(function(){
+                var id = $("#cajaid").val();
+                //SI EN NUESTRO CONTROLLER, EL PARAMETRO SE LLAMA id
+                //LA PETICION LA HAREMOS ASI:
+                // controller/action/VALOR
+
+                //SI EL PARAMETRO SE LLAMA DE OTRA FORMA, SE HACE TRADICIONAL
+                // controller/action?param1=valor
+
+                //SI SE COMBINAN:
+                // controller/action/VALOR_id?param1=valor
+                $("#containercoches").load("/Coches/_CochesDetails?idCoche=" + id);
+            })
         })
     </script>
 }
 <h2 style="color:blue">Index de AJAC con Coches</h2>
 
+<input type="text" id="cajaid" class="form-control"/>
 <button class="btn btn-outline-info" id="botonloadcoches">Load AJAX Coches</button>
+<button class="btn btn-outline-info" id="botonloaddeatilscoches">Details AJAX Coche</button>
 
 <div id="containercoches" style="background-color:lightgreen">
 
