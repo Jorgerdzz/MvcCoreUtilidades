@@ -1,0 +1,20 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@section Scripts{
+    <script>
+        $(document).ready(function(){
+            $("#botonloadcoches").click(function(){
+                //LLAMAMOS AL CONTROLLER Y AL IACTIONRESULT
+                $("#containercoches").load("/Coches/_CochesPartial");
+            })
+        })
+    </script>
+}
+<h2 style="color:blue">Index de AJAC con Coches</h2>
+
+<button class="btn btn-outline-info" id="botonloadcoches">Load AJAX Coches</button>
+
+<div id="containercoches" style="background-color:lightgreen">
+
+</div>
